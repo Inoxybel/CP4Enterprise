@@ -1,4 +1,5 @@
-﻿using CP4Enterprise.Domain.Interfaces;
+﻿using ConsoleTools;
+using CP4Enterprise.Domain.Interfaces;
 using CP4Enterprise.Services;
 
 namespace CP4Enterprise
@@ -14,7 +15,27 @@ namespace CP4Enterprise
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Uhul");
+            new ConsoleMenu()
+          .Add("Exibir Fúncionarios CLT", () =>
+                           {
+                               Console.WriteLine("\nOne");
+                               Console.ReadLine();
+                           })
+         .Add("Exibir Fúncionarios CLT", () => Console.WriteLine("Two"))
+         .Add("Soma de custo Total de Fúncionarios", () => Console.WriteLine("Two"))
+         .Add("Aumentar salário de fúncionario CLT", () => Console.WriteLine("Two"))
+         .Add("Aumentar salário de fúncionario PJ", () => Console.WriteLine("Two"))
+         .Add("Pesquisar Fúncionario", () => Console.WriteLine("Two"))
+         .Add("Pesquisar Custo de Fúncionario", () => Console.WriteLine("Two"))
+         .Add("Sair", ConsoleMenu.Close)
+         .Configure(config =>
+         {
+             config.WriteHeaderAction = () => Console.WriteLine("escolha uma opção:");
+             config.Title = "MENU EMPRESARIAL\n";
+             config.EnableWriteTitle = true;
+         })
+         .Show();
         }
+
     }
 }
