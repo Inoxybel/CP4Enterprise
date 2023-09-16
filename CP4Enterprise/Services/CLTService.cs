@@ -5,6 +5,13 @@ namespace CP4Enterprise.Services
 {
     public class CLTService : ICLTService
     {
+        private readonly IEmployeeRepository _employeeRepository;
+
+        public CLTService(IEmployeeRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
+
         public List<CLT> GetAllCLTEmployees()
         {
             throw new NotImplementedException();
