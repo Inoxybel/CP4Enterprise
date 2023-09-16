@@ -1,6 +1,21 @@
-﻿namespace CP4Enterprise.Domain.Entities
+﻿using CP4Enterprise.CrossCutting.Enums;
+using CP4Enterprise.Domain.Interfaces;
+
+namespace CP4Enterprise.Domain.Entities
 {
-    public class Employee
+    public abstract class Employee 
     {
+        public int Register { get; set; }
+
+        public string Name { get; set; }
+
+        public Gender Gender { get; set; }
+
+        public Employee(int register, string name, Gender gender) 
+        {
+            Register = register;
+            Name = name;
+            Gender = gender;
+        }
     }
 }
