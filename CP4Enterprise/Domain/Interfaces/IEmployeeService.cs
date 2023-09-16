@@ -7,6 +7,7 @@ namespace CP4Enterprise.Domain.Interfaces
     {
         decimal GetTotalMonthlyCost();
         Result<Employee> GetEmployeeById(int employeeId);
-        decimal GetEmployeeMonthlyTotalCost(int employeeId);
+        decimal GetEmployeeMonthlyTotalCost(int employeeId, decimal extraHours = 0m);
+        Result<bool> SaveEmployee(Employee employee);
     }
 }

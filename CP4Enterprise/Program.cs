@@ -25,7 +25,7 @@ namespace CP4Enterprise
             .Build();
 
             var app = host.Services.GetService<App>();
-            App.Run(args);
+            app.Run(args);
         }
     }
 }

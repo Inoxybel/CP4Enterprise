@@ -4,18 +4,16 @@ namespace CP4Enterprise.Domain.Entities
 {
     public class PJ : Employee
     {
-        public float HourValue { get; set; }
-
-        public float HourWorked { get; set; }
-
+        public decimal HourValue { get; set; }
+        public decimal HourWorked { get; set; }
         public string CNPJ { get; set; }
 
-        public PJ(int register, 
-                  string name, 
+        public PJ(string name, 
                   Gender gender, 
-                  float hourValue, 
-                  float hourWorked,
-                  string cnpj) 
+                  decimal hourValue, 
+                  decimal hourWorked,
+                  string cnpj,
+                  int register = 0) 
             : base(register, name, gender)
         {
             HourValue = hourValue;

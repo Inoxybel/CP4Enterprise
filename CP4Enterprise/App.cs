@@ -12,7 +12,7 @@ namespace CP4Enterprise
             _menuService = menuService;
         }
 
-        public static void Run(string[] args)
+        public void Run(string[] args)
         {
             new ConsoleMenu()
               .Add("Exibir Fúncionarios CLT", () =>
