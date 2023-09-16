@@ -14,12 +14,44 @@ namespace CP4Enterprise.Services
 
         public List<PJ> GetAllPJEmployees()
         {
-            throw new NotImplementedException();
+            var employees = _employeeRepository.GetAllEmployees();
+
+            return employees.OfType<PJ>().ToList();
         }
 
-        public decimal IncreasePJSalaryByHourlyRate(int employeeRecordNumber, decimal hourlyRateIncrease)
+        public decimal IncreasePJSalaryByHourlyRate(decimal hourlyRateIncrease, int employeeRecordNumber = -1)
         {
-            throw new NotImplementedException();
+            if (hourlyRateIncrease <= 0)
+                return -1;
+
+            if(employeeRecordNumber == -1)
+            {
+                var employees = GetAllPJEmployees();
+
+                foreach(var employee in employees)
+                {
+                    employee.HourValue += hourlyRateIncrease;
+
+                    var _ = _employeeRepository.UpdateEmployee(employee);
+                }
+
+                return employees.First().HourValue;
+            }
+            else
+            {
+                var repositoryResult = _employeeRepository.GetEmployee(employeeRecordNumber);
+
+                if(repositoryResult.Success && repositoryResult.Data is PJ employee)
+                {
+                    employee.HourValue += hourlyRateIncrease;
+
+                    var _ = _employeeRepository.UpdateEmployee(employee);
+
+                    return employee.HourValue;
+                }
+
+                return -1;
+            }
         }
     }
 }

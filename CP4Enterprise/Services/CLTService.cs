@@ -14,12 +14,31 @@ namespace CP4Enterprise.Services
 
         public List<CLT> GetAllCLTEmployees()
         {
-            throw new NotImplementedException();
+            var employees = _employeeRepository.GetAllEmployees();
+
+            return employees.OfType<CLT>().ToList();
         }
 
         public decimal IncreaseCLTSalaryByPercentage(int employeeRecordNumber, decimal percentageIncrease)
         {
-            throw new NotImplementedException();
+            if (percentageIncrease <= 0)
+                return -1;
+
+            var repositoryResult = _employeeRepository.GetEmployee(employeeRecordNumber);
+
+            if (repositoryResult.Success && repositoryResult.Data is CLT employee)
+            {
+                employee.Salary += employee.Salary * percentageIncrease / 100;
+
+                var updateResult = _employeeRepository.UpdateEmployee(employee);
+
+                if (!updateResult.Success)
+                    return 0;
+
+                return employee.Salary;
+            }
+
+            return -1;
         }
     }
 }

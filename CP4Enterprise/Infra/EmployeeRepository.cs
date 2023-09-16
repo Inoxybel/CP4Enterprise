@@ -9,7 +9,7 @@ namespace CP4Enterprise.Infra
         private readonly List<Employee> employees = new();
         private int RegisterCount = 1;
 
-        public Result<int> SaveEmployee(Employee employee)
+        public Result<bool> SaveEmployee(Employee employee)
         {
             try
             {
@@ -20,7 +20,7 @@ namespace CP4Enterprise.Infra
                 return new()
                 {
                     Success = true,
-                    Data = employee.Register
+                    Data = true
                 };
             }
             catch (Exception)
@@ -29,6 +29,38 @@ namespace CP4Enterprise.Infra
                 {
                     Success = false,
                     ErrorMessage = "An error occurred while saving the employee"
+                };
+            }
+        }
+
+        public Result<bool> UpdateEmployee(Employee employee)
+        {
+            try
+            {
+                var employeeIndex = employees.IndexOf(employee);
+
+                if (employeeIndex == -1)
+                    return new()
+                    {
+                        Success = false,
+                        Data = false,
+                        ErrorMessage = "Employee not founded."
+                    };
+
+                employees[employeeIndex] = employee;
+
+                return new()
+                {
+                    Success = true,
+                    Data = true
+                };
+            }
+            catch(Exception ex)
+            {
+                return new()
+                {
+                    Success = false,
+                    ErrorMessage = ex.Message
                 };
             }
         }

@@ -7,13 +7,16 @@ namespace CP4Enterprise.Services
     {
         private readonly ICLTService _cltService;
         private readonly IPJService _pjService;
+        private readonly IEmployeeService _employeeService;
 
         public MenuService(
             ICLTService cltService,
-            IPJService pjService)
+            IPJService pjService,
+            IEmployeeService employeeService)
         {
             _cltService = cltService;
             _pjService = pjService;
+            _employeeService = employeeService;
         }
 
         public List<CLT> GetAllCLTEmployees()

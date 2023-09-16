@@ -5,7 +5,8 @@ namespace CP4Enterprise.Domain.Interfaces
 {
     public interface IEmployeeRepository
     {
-        Result<int> SaveEmployee(Employee employee);
+        Result<bool> SaveEmployee(Employee employee);
+        Result<bool> UpdateEmployee(Employee employee);
         Result<Employee> GetEmployee(int register);
         List<Employee> GetAllEmployees();
     }
