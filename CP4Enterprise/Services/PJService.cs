@@ -5,6 +5,13 @@ namespace CP4Enterprise.Services
 {
     public class PJService : IPJService
     {
+        private readonly IEmployeeRepository _employeeRepository;
+
+        public PJService(IEmployeeRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
+
         public List<PJ> GetAllPJEmployees()
         {
             throw new NotImplementedException();

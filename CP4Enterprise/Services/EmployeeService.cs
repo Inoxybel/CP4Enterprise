@@ -1,26 +1,28 @@
 ﻿using CP4Enterprise.CrossCutting.Helpers;
 using CP4Enterprise.Domain.Entities;
 using CP4Enterprise.Domain.Interfaces;
-using CP4Enterprise.Infra;
 
 namespace CP4Enterprise.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        private readonly IEmployeeRepository employeeRepository;
-        private readonly ICLTService cltService;
-        private readonly IPJService pjService;
+        private readonly IEmployeeRepository _employeeRepository;
+        private readonly ICLTService _cltService;
+        private readonly IPJService _pjService;
 
-        public EmployeeService()
+        public EmployeeService(
+            ICLTService cltService,
+            IPJService pjService,
+            IEmployeeRepository employeeRepository)
         {
-            cltService = new CLTService();
-            pjService = new PJService();
-            employeeRepository = new EmployeeRepository();
+            _cltService = cltService;
+            _pjService = pjService;
+            _employeeRepository = employeeRepository;
         }
 
         public Result<Employee> GetEmployeeById(int employeeId)
         {
-            var repositoryResult = employeeRepository.GetEmployee(employeeId);
+            var repositoryResult = _employeeRepository.GetEmployee(employeeId);
 
             return new()
             {

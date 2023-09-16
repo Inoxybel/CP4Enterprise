@@ -1,41 +1,31 @@
-﻿using ConsoleTools;
-using CP4Enterprise.Domain.Interfaces;
+﻿using CP4Enterprise.Domain.Interfaces;
+using CP4Enterprise.Infra;
 using CP4Enterprise.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace CP4Enterprise
 {
     public class Program
     {
-        private readonly IMenuService service;
-
-        public Program()
-        {
-            service = new MenuService();    
-        }
-
         static void Main(string[] args)
         {
-            new ConsoleMenu()
-          .Add("Exibir Fúncionarios CLT", () =>
-                           {
-                               Console.WriteLine("\nOne");
-                               Console.ReadLine();
-                           })
-         .Add("Exibir Fúncionarios CLT", () => Console.WriteLine("Two"))
-         .Add("Soma de custo Total de Fúncionarios", () => Console.WriteLine("Two"))
-         .Add("Aumentar salário de fúncionario CLT", () => Console.WriteLine("Two"))
-         .Add("Aumentar salário de fúncionario PJ", () => Console.WriteLine("Two"))
-         .Add("Pesquisar Fúncionario", () => Console.WriteLine("Two"))
-         .Add("Pesquisar Custo de Fúncionario", () => Console.WriteLine("Two"))
-         .Add("Sair", ConsoleMenu.Close)
-         .Configure(config =>
-         {
-             config.WriteHeaderAction = () => Console.WriteLine("escolha uma opção:");
-             config.Title = "MENU EMPRESARIAL\n";
-             config.EnableWriteTitle = true;
-         })
-         .Show();
-        }
+            var host = Host.CreateDefaultBuilder()
+            .ConfigureServices((context, services) =>
+            {
+                services.AddSingleton<ICLTService, CLTService>();
+                services.AddSingleton<IPJService, PJService>();
+                services.AddSingleton<IEmployeeService, EmployeeService>();
+                services.AddSingleton<IMenuService, MenuService>();
 
+                services.AddSingleton<IEmployeeRepository, EmployeeRepository>();
+
+                services.AddSingleton<App>();
+            })
+            .Build();
+
+            var app = host.Services.GetService<App>();
+            App.Run(args);
+        }
     }
 }

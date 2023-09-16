@@ -5,6 +5,17 @@ namespace CP4Enterprise.Services
 {
     public class MenuService : IMenuService
     {
+        private readonly ICLTService _cltService;
+        private readonly IPJService _pjService;
+
+        public MenuService(
+            ICLTService cltService,
+            IPJService pjService)
+        {
+            _cltService = cltService;
+            _pjService = pjService;
+        }
+
         public List<CLT> GetAllCLTEmployees()
         {
             throw new NotImplementedException();
