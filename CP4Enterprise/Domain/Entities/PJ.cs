@@ -16,7 +16,8 @@ namespace CP4Enterprise.Domain.Entities
                   Gender gender, 
                   float hourValue, 
                   float hourWorked,
-                  string cnpj) : base(register, name, gender)
+                  string cnpj) 
+            : base(register, name, gender)
         {
             HourValue = hourValue;
             HourWorked = hourWorked;
