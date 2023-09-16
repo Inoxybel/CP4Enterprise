@@ -1,5 +1,4 @@
 ﻿using CP4Enterprise.CrossCutting.Enums;
-using CP4Enterprise.Domain.Interfaces;
 
 namespace CP4Enterprise.Domain.Entities
 {

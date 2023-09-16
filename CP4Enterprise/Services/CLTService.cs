@@ -14,7 +14,11 @@ namespace CP4Enterprise.Services
 
         public List<CLT> GetAllCLTEmployees()
         {
-            throw new NotImplementedException();
+            var employees = _employeeRepository.GetAllEmployees();
+
+            var clts = employees.OfType<CLT>().ToList();
+
+            return clts;
         }
 
         public decimal IncreaseCLTSalaryByPercentage(int employeeRecordNumber, decimal percentageIncrease)
