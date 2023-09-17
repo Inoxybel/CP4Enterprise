@@ -18,5 +18,10 @@ namespace CP4Enterprise.Domain.Entities
             Salary = salary;
             Trusted = trusted;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + $"\nSálario: R${Salary}.\nConfiável: {Trusted}";
+        }
     }
 }
