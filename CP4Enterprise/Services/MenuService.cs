@@ -54,12 +54,17 @@ namespace CP4Enterprise.Services
 
         public decimal IncreaseCLTSalaryByPercentage(int employeeRecordNumber, decimal percentageIncrease)
         {
-            return _cltService.IncreaseCLTSalaryByPercentage(employeeRecordNumber, percentageIncrease);
+            var newSalary = _cltService.IncreaseCLTSalaryByPercentage(employeeRecordNumber, percentageIncrease);
+
+            if (newSalary == -1)
+                return 0;
+
+            return newSalary;
         }
 
-        public decimal IncreasePJSalaryByHourlyRate(int employeeRecordNumber, decimal hourlyRateIncrease)
+        public bool IncreasePJSalaryByHourlyRate(decimal hourlyRateIncrease, int employeeRecordNumber = -1)
         {
-            return _pjService.IncreasePJSalaryByHourlyRate(employeeRecordNumber, hourlyRateIncrease);
+            return _pjService.IncreasePJSalaryByHourlyRate(hourlyRateIncrease, employeeRecordNumber);
         }
 
         public Result<bool> CreateEmployee(Employee employee)

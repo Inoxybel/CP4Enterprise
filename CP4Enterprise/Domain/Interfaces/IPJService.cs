@@ -4,7 +4,7 @@ namespace CP4Enterprise.Domain.Interfaces
 {
     public interface IPJService
     {
-        decimal IncreasePJSalaryByHourlyRate(int employeeRecordNumber, decimal hourlyRateIncrease);
+        bool IncreasePJSalaryByHourlyRate(decimal hourlyRateIncrease, int employeeRecordNumber = -1);
         List<PJ> GetAllPJEmployees();
     }
 }

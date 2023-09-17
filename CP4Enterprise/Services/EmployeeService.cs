@@ -49,12 +49,13 @@ namespace CP4Enterprise.Services
             {
                 decimal baseSalary = cltEmployee.Salary;
 
-                decimal totalCost = baseSalary +
-                    (baseSalary * Percents.VacationFraction / 100) +
-                    (baseSalary * Percents.ThirteenthSalaryFraction / 100) +
-                    (baseSalary * Percents.FGTS / 100) +
-                    (baseSalary * Percents.FGTSResignationProvision / 100) +
-                    (baseSalary * Percents.Previdential / 100);
+                decimal vacationFraction = (baseSalary * 1 / 3m) * Percents.VacationFraction / 100;
+                decimal thirteenthSalaryFraction = (baseSalary / 12) * Percents.ThirteenthSalaryFraction / 100;
+                decimal FGTS = baseSalary * Percents.FGTS / 100;
+                decimal FGTSResignationProvision = baseSalary * Percents.FGTSResignationProvision / 100;
+                decimal previdential = baseSalary * Percents.Previdential / 100;
+
+                decimal totalCost = baseSalary + vacationFraction + thirteenthSalaryFraction + FGTS + FGTSResignationProvision + previdential;
 
                 return totalCost;
             }
