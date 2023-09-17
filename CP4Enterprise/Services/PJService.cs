@@ -19,10 +19,10 @@ namespace CP4Enterprise.Services
             return employees.OfType<PJ>().ToList();
         }
 
-        public decimal IncreasePJSalaryByHourlyRate(decimal hourlyRateIncrease, int employeeRecordNumber = -1)
+        public bool IncreasePJSalaryByHourlyRate(decimal hourlyRateIncrease, int employeeRecordNumber = -1)
         {
             if (hourlyRateIncrease <= 0)
-                return -1;
+                return false;
 
             if(employeeRecordNumber == -1)
             {
@@ -35,7 +35,7 @@ namespace CP4Enterprise.Services
                     var _ = _employeeRepository.UpdateEmployee(employee);
                 }
 
-                return employees.First().HourValue;
+                return true;
             }
             else
             {
@@ -47,10 +47,10 @@ namespace CP4Enterprise.Services
 
                     var _ = _employeeRepository.UpdateEmployee(employee);
 
-                    return employee.HourValue;
+                    return true;
                 }
 
-                return -1;
+                return false;
             }
         }
     }

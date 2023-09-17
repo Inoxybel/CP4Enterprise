@@ -46,12 +46,24 @@ namespace CP4Enterprise.Services
 
         public decimal IncreaseCLTSalaryByPercentage(int employeeRecordNumber, decimal percentageIncrease)
         {
-            throw new NotImplementedException();
+            var newSalary = _cltService.IncreaseCLTSalaryByPercentage(employeeRecordNumber, percentageIncrease);
+
+            if (newSalary == -1)
+                return 0;
+
+            return newSalary;
         }
 
-        public decimal IncreasePJSalaryByHourlyRate(int employeeRecordNumber, decimal hourlyRateIncrease)
+        public bool IncreasePJSalaryByHourlyRate(decimal hourlyRateIncrease, int employeeRecordNumber = -1)
         {
-            throw new NotImplementedException();
+            return _pjService.IncreasePJSalaryByHourlyRate(hourlyRateIncrease, employeeRecordNumber);
+        }
+
+        public Result<bool> CreateEmployee(Employee employee)
+        {
+            var result = _employeeService.SaveEmployee(employee);
+
+            return result;
         }
     }
 }
