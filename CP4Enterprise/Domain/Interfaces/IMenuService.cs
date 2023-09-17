@@ -1,4 +1,5 @@
-﻿using CP4Enterprise.Domain.Entities;
+﻿using CP4Enterprise.CrossCutting.Helpers;
+using CP4Enterprise.Domain.Entities;
 
 namespace CP4Enterprise.Domain.Interfaces
 {
@@ -9,8 +10,9 @@ namespace CP4Enterprise.Domain.Interfaces
         decimal GetTotalMonthlyCost();
         decimal IncreaseCLTSalaryByPercentage(int employeeRecordNumber, decimal percentageIncrease);
         decimal IncreasePJSalaryByHourlyRate(int employeeRecordNumber, decimal hourlyRateIncrease);
-        Employee GetEmployeeById(int employeeId);
+        Result<Employee> GetEmployeeById(int employeeId);
         decimal GetEmployeeMonthlyTotalCost(int employeeId);
+        Result<bool> CreateEmployee(Employee employee);
     }
 
 }

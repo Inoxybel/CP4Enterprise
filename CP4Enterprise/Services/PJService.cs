@@ -19,7 +19,7 @@ namespace CP4Enterprise.Services
             return employees.OfType<PJ>().ToList();
         }
 
-        public decimal IncreasePJSalaryByHourlyRate(decimal hourlyRateIncrease, int employeeRecordNumber = -1)
+        public decimal IncreasePJSalaryByHourlyRate(int employeeRecordNumber , decimal hourlyRateIncrease)
         {
             if (hourlyRateIncrease <= 0)
                 return -1;
