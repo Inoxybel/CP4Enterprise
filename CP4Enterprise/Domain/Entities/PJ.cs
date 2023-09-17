@@ -20,5 +20,10 @@ namespace CP4Enterprise.Domain.Entities
             HourWorked = hourWorked;
             CNPJ = cnpj;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + $"\nValor da Hora: R${HourValue}.\nHoras Trabalhadas: {HourWorked}.\nCNPJ: {CNPJ}.";
+        }
     }
 }

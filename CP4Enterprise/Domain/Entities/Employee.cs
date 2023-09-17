@@ -16,5 +16,12 @@ namespace CP4Enterprise.Domain.Entities
             Name = name;
             Gender = gender;
         }
+
+        public override string ToString()
+        {
+            string text = $"\nRegistro: {Register}.\nNome: {Name}.\nGenêro: {Gender}";
+
+            return text;
+        }
     }
 }

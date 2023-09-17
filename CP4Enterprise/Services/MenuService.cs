@@ -1,4 +1,5 @@
-﻿using CP4Enterprise.Domain.Entities;
+﻿using CP4Enterprise.CrossCutting.Helpers;
+using CP4Enterprise.Domain.Entities;
 using CP4Enterprise.Domain.Interfaces;
 
 namespace CP4Enterprise.Services
@@ -21,27 +22,34 @@ namespace CP4Enterprise.Services
 
         public List<CLT> GetAllCLTEmployees()
         {
-            throw new NotImplementedException();
+            List<CLT> employeeList = _cltService.GetAllCLTEmployees();
+
+            return employeeList;
+            
         }
 
         public List<PJ> GetAllPJEmployees()
         {
-            throw new NotImplementedException();
+            List<PJ> employeeList = _pjService.GetAllPJEmployees();
+
+            return employeeList;
         }
 
-        public Employee GetEmployeeById(int employeeId)
+        public Result<Employee> GetEmployeeById(int employeeId)
         {
-            throw new NotImplementedException();
+            Result<Employee> employee = _employeeService.GetEmployeeById(employeeId);
+
+            return employee;
         }
 
         public decimal GetEmployeeMonthlyTotalCost(int employeeId)
         {
-            throw new NotImplementedException();
+            return _employeeService.GetEmployeeMonthlyTotalCost(employeeId);
         }
 
         public decimal GetTotalMonthlyCost()
         {
-            throw new NotImplementedException();
+           return _employeeService.GetTotalMonthlyCost();
         }
 
         public decimal IncreaseCLTSalaryByPercentage(int employeeRecordNumber, decimal percentageIncrease)

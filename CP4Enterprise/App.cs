@@ -1,4 +1,7 @@
-﻿using ConsoleTools;
+﻿using ConsoleTables;
+using ConsoleTools;
+using CP4Enterprise.CrossCutting.Enums;
+using CP4Enterprise.Domain.Entities;
 using CP4Enterprise.Domain.Interfaces;
 
 namespace CP4Enterprise
@@ -136,7 +139,6 @@ namespace CP4Enterprise
 
                   Console.WriteLine(table.ToString());
                   Console.ReadKey();
-
               })
              .Add("Exibir Funcionários PJ", () =>
              {
@@ -233,6 +235,7 @@ namespace CP4Enterprise
                  config.EnableWriteTitle = true;
              })
              .Show();
+            
         }
 
         private static string GetNameInput()
@@ -388,4 +391,5 @@ namespace CP4Enterprise
         }
 
     }
+    
 }
