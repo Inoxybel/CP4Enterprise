@@ -62,14 +62,15 @@ namespace Tests.Unit.Services
 
             var result = _employeeService.GetEmployeeMonthlyTotalCost(employeeId);
 
-            decimal expectedTotalCost = baseSalary +
-                (baseSalary * Percents.VacationFraction / 100) +
-                (baseSalary * Percents.ThirteenthSalaryFraction / 100) +
-                (baseSalary * Percents.FGTS / 100) +
-                (baseSalary * Percents.FGTSResignationProvision / 100) +
-                (baseSalary * Percents.Previdential / 100);
+            decimal vacationFraction = (baseSalary * 1 / 3m) * Percents.VacationFraction / 100;
+            decimal thirteenthSalaryFraction = (baseSalary / 12) * Percents.ThirteenthSalaryFraction / 100;
+            decimal FGTS = baseSalary * Percents.FGTS / 100;
+            decimal FGTSResignationProvision = baseSalary * Percents.FGTSResignationProvision / 100;
+            decimal previdential = baseSalary * Percents.Previdential / 100;
 
-            result.Should().Be(expectedTotalCost);
+            decimal totalCost = baseSalary + vacationFraction + thirteenthSalaryFraction + FGTS + FGTSResignationProvision + previdential;
+
+            result.Should().Be(totalCost);
         }
 
         [Fact]
@@ -149,15 +150,17 @@ namespace Tests.Unit.Services
 
             var result = _employeeService.GetTotalMonthlyCost();
 
-            decimal expectedCLTTotalCost = cltEmployee.Salary +
-                (cltEmployee.Salary * Percents.VacationFraction / 100) +
-                (cltEmployee.Salary * Percents.ThirteenthSalaryFraction / 100) +
-                (cltEmployee.Salary * Percents.FGTS / 100) +
-                (cltEmployee.Salary * Percents.FGTSResignationProvision / 100) +
-                (cltEmployee.Salary * Percents.Previdential / 100);
+            decimal baseSalary = cltEmployee.Salary;
+            decimal vacationFraction = (baseSalary * 1 / 3m) * Percents.VacationFraction / 100;
+            decimal thirteenthSalaryFraction = (baseSalary / 12) * Percents.ThirteenthSalaryFraction / 100;
+            decimal FGTS = baseSalary * Percents.FGTS / 100;
+            decimal FGTSResignationProvision = baseSalary * Percents.FGTSResignationProvision / 100;
+            decimal previdential = baseSalary * Percents.Previdential / 100;
+
+            decimal totalCltCost = baseSalary + vacationFraction + thirteenthSalaryFraction + FGTS + FGTSResignationProvision + previdential;
 
             decimal expectedPJTotalCost = pjEmployee.HourValue * pjEmployee.HourWorked;
-            decimal expectedTotalCost = expectedCLTTotalCost + expectedPJTotalCost;
+            decimal expectedTotalCost = totalCltCost + expectedPJTotalCost;
 
             result.Should().Be(expectedTotalCost);
         }

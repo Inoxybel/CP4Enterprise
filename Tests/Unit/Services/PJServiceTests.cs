@@ -51,9 +51,9 @@ namespace Tests.Unit.Services
         }
 
         [Theory]
-        [InlineData(5, 1, 25)]
-        [InlineData(10, -1, 30)]
-        public void IncreasePJSalaryByHourlyRate_SHOULD_IncreaseHourlyRate_WHEN_ValidInput(decimal hourlyRateIncrease, int employeeRecordNumber, decimal expectedHourValue)
+        [InlineData(5, 1, true)]
+        [InlineData(10, -1, true)]
+        public void IncreasePJSalaryByHourlyRate_SHOULD_IncreaseHourlyRate_WHEN_ValidInput(decimal hourlyRateIncrease, int employeeRecordNumber, bool expectedHourValue)
         {
             var mockEmployeeRepository = new Mock<IEmployeeRepository>();
 
